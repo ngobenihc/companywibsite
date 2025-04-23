@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +41,7 @@
 
 <body>
 
-{% include 'appwebsite/header.html' %}
+  {% include 'appwebsite/header.html' %}
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero">
@@ -60,34 +61,22 @@
       </div>
     </div>
 
+
+    </div>
   </section>
   <!-- End Hero Section -->
 
   <main id="main">
+
       {% block website %}
 
       {% endblock website %}
+
   </main><!-- End #main -->
 
 {% include 'appwebsite/footer.html' %}
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-
-  <!-- Template Main JS File -->
-  <script src="{% static 'javascript/main.js' %}"></script>
-
-
-
-
+{% include 'appwebsite/js.html' %}
 
 </body>
 
