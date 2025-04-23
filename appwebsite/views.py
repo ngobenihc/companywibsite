@@ -5,6 +5,8 @@ from appwebsite.models import CompanyInfo
 
 
 # Create your views here.
+def home(request):
+    return render(request, 'appwebsite/home.html', )
 
 def about(request):
     context ={
