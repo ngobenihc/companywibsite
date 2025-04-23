@@ -13,3 +13,9 @@ def about(request):
         'name':'clif'
     }
     return render(request,'appwebsite/about.html',context)
+
+
+
+
+def testimonials(request):
+    return render(request, 'appwebsite/testimonials.html', )
