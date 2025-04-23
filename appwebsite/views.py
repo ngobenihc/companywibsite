@@ -18,4 +18,5 @@ def about(request):
 
 
 def testimonials(request):
+
     return render(request, 'appwebsite/testimonials.html', )
