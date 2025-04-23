@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from appwebsite.models import CompanyInfo
+from appwebsite.models import CompanyInfo, Service
+
 
 # Register your models here.
 #admin.site.register(CompanyInfo)
@@ -14,7 +15,9 @@ class CompanyInfoAdmin(admin.ModelAdmin):
         'open_hours'
     ]
 
-
+    search_fields = [
+        'company_name'
+    ]
     # def has_add_permission(self, request):
     #     return False
     # def has_change_permission(self, request, obj=None):
@@ -24,3 +27,13 @@ class CompanyInfoAdmin(admin.ModelAdmin):
     # readonly_fields = [
     #     'company_name'
     # ]
+@admin.register(Service)
+class ServiceInfo(admin.ModelAdmin):
+    list_display = [
+        'tittle',
+        'description',
+    ]
+
+    search_fields = [
+        'tittle'
+    ]

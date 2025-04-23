@@ -17,3 +17,15 @@ class CompanyInfo(models.Model):
 
     def __str__(self):
         return f'{self.company_name} company profile'
+
+
+
+
+class Service(models.Model):
+    icon = models.CharField(max_length=100,blank=True)
+    tittle = models.CharField(max_length=200,unique=True)
+    description =models.TextField()
+
+
+    def __str__(self):
+        return f'{self.tittle} tittle profile'
