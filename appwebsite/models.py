@@ -21,7 +21,7 @@ class CompanyInfo(models.Model):
 
 
 
-class Service(models.Model):
+class ServiceInfo(models.Model):
     icon = models.CharField(max_length=100,blank=True)
     tittle = models.CharField(max_length=200,unique=True)
     description =models.TextField()

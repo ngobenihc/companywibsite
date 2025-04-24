@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from appwebsite.models import CompanyInfo, Service
+from appwebsite.models import CompanyInfo, ServiceInfo
 
 
 # Register your models here.
@@ -27,8 +27,8 @@ class CompanyInfoAdmin(admin.ModelAdmin):
     # readonly_fields = [
     #     'company_name'
     # ]
-@admin.register(Service)
-class ServiceInfo(admin.ModelAdmin):
+@admin.register(ServiceInfo)
+class ServiceAdmin(admin.ModelAdmin):
     list_display = [
         'tittle',
         'description',

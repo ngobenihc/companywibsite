@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from appwebsite.models import CompanyInfo
+from appwebsite.models import CompanyInfo, ServiceInfo
 
 
 # Create your views here.
 def home(request):
     company = CompanyInfo.objects.first()
+    service = ServiceInfo.objects.all()
     context = {
     'company_name':company.company_name,
     "location":company.location,
@@ -18,6 +19,7 @@ def home(request):
     'instagram_url':company.instagram_url,
     'linkedin_url': company.linkedin_url,
     'facebook_url':company.facebook_url,
+    'service': service,
     }
     return render(request, 'appwebsite/home.html', context)
 
@@ -30,3 +32,14 @@ def about(request):
 def testimonials(request):
 
     return render(request, 'appwebsite/testimonials.html', )
+
+
+def services(request):
+    service =ServiceInfo.objects.all()
+    context = {
+        'icon':service.icon,
+        'title':service.tittle,
+        'description':service.description,
+
+    }
+    return render(request, 'appwebsite/testimonials.html',context )
