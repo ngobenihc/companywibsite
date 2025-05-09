@@ -1,13 +1,16 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render,redirect
+from django.core.mail import send_mail
+from django.conf import settings
 
-from appwebsite.models import CompanyInfo, ServiceInfo
+from appwebsite.models import CompanyInfo, ServiceInfo, TestimonialIfor,FrequentlyAskedQuestionsInfo
 
 
 # Create your views here.
 def home(request):
     company = CompanyInfo.objects.first()
     service = ServiceInfo.objects.all()
+    testimonial = TestimonialIfor.objects.all()
+    asked_questions = FrequentlyAskedQuestionsInfo.objects.all()
     context = {
     'company_name':company.company_name,
     "location":company.location,
@@ -20,8 +23,11 @@ def home(request):
     'linkedin_url': company.linkedin_url,
     'facebook_url':company.facebook_url,
     'service': service,
+    'testimonial':testimonial,
+    'asked_questions':asked_questions
     }
     return render(request, 'appwebsite/home.html', context)
+
 
 def about(request):
     context ={
@@ -29,9 +35,14 @@ def about(request):
     }
     return render(request,'appwebsite/about.html',context)
 
-def testimonials(request):
 
-    return render(request, 'appwebsite/testimonials.html', )
+def testimonials(request):
+    testimonial = TestimonialIfor.objects.all()
+    context = {
+        'testimonial':testimonial,
+    }
+
+    return render(request, 'appwebsite/testimonials.html',context )
 
 
 def services(request):
@@ -43,3 +54,29 @@ def services(request):
 
     }
     return render(request, 'appwebsite/testimonials.html',context )
+
+
+def contact_form(request):
+
+    if request.method =='POST':
+
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        subject = request.POST.get('subject')
+        message=request.POST.get('message')
+
+        print("we")
+    context ={
+
+    }
+    send_mail(
+        subject=subject,
+        message=f'{name} {email} {message}',
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[settings.EMAIL_HOST_USER],
+        fail_silently=False
+
+    )
+    return redirect('home-page')
+
+
