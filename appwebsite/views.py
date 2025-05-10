@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.core.mail import send_mail
 from django.conf import settings
 
-from appwebsite.models import CompanyInfo, ServiceInfo, TestimonialIfor,FrequentlyAskedQuestionsInfo
+from appwebsite.models import CompanyInfo, ServiceInfo, TestimonialIfor, FrequentlyAskedQuestionsInfo, BlogInfo
 
 
 # Create your views here.
@@ -11,6 +11,7 @@ def home(request):
     service = ServiceInfo.objects.all()
     testimonial = TestimonialIfor.objects.all()
     asked_questions = FrequentlyAskedQuestionsInfo.objects.all()
+    blog_post = BlogInfo.objects.all().order_by("-date_created")[:3]
     context = {
     'company_name':company.company_name,
     "location":company.location,
@@ -24,7 +25,8 @@ def home(request):
     'facebook_url':company.facebook_url,
     'service': service,
     'testimonial':testimonial,
-    'asked_questions':asked_questions
+    'asked_questions':asked_questions,
+    'blog_post':blog_post,
     }
     return render(request, 'appwebsite/home.html', context)
 
