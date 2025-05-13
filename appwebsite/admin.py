@@ -79,7 +79,7 @@ class BlogInfoAdmin(admin.ModelAdmin):
     list_display = [
 
         'title',
-        'topic',
+        'topic_category',
     ]
 
 @admin.register(AuthorInfor)

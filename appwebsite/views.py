@@ -67,7 +67,6 @@ def contact_form(request):
         subject = request.POST.get('subject')
         message=request.POST.get('message')
 
-        print("we")
     context ={
 
     }
@@ -82,3 +81,24 @@ def contact_form(request):
     return redirect('home-page')
 
 
+def blog(request):
+    testimonial = TestimonialIfor.objects.all()
+    blog_post = BlogInfo.objects.all().order_by("-date_created")[:3]
+    context = {
+        'testimonial':testimonial,
+        'blog_post': blog_post,
+    }
+
+    return render(request, 'appwebsite/blog.html',context )
+
+
+
+def blog_details(request, blog_id):
+
+    blog_post = BlogInfo.objects.get(id = blog_id)
+    context = {
+
+        'blog_post': blog_post,
+    }
+
+    return render(request, 'appwebsite/blog_details.html',context )

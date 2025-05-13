@@ -84,7 +84,7 @@ class AuthorInfor(models.Model):
 
 class BlogInfo(models.Model):
     img = models.CharField(max_length=255,null=True,blank=True)
-    topic= models.CharField(max_length=255,null=True,blank=True)
+    topic_category= models.CharField(max_length=255,null=True,blank=True)
     title = models.CharField(max_length=255)
     author = models.ForeignKey(AuthorInfor,null=True, on_delete=models.CASCADE)
     context = models.TextField(null=True)

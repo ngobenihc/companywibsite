@@ -141,32 +141,37 @@
         </div>
 
         <div class="row gy-4">
-
-          <div class="col-xl-4 col-md-6">
+          {% for blog in blog_post %}
+            <div class="col-xl-4 col-md-6">
             <article>
 
               <div class="post-img">
-                <img src="{% static 'assets/img/blog/blog-1.jpg' %}" alt="" class="img-fluid">
+                {% if 'http' in blog.img %}
+                  <img src="{{ blog.img }}" class="testimonial-img flex-shrink-0" alt="">
+                {% else %}
+                  <img src="{% static 'assets/img/blog/blog-1.jpg' %}" alt="" class="img-fluid">
+                {% endif %}
+<!--                <img src="{% static 'assets/img/blog/blog-1.jpg' %}" alt="" class="img-fluid">-->
               </div>
 
               <p class="post-category">{{blog.topic}}</p>
 
               <h2 class="title">
-                <a href="blog-details.html">{{blog.title}}</a>
+                <a href="{% url 'blog-page' blog_id=blog.id %}"> {{blog.topic}}</a>
               </h2>
 
               <div class="d-flex align-items-center">
                 <div class="post-meta">
                   <p class="post-author">{{blog.author}}</p>
                   <p class="post-date">
-                    <time datetime="2022-01-01">{{blog.date_created}}</time>
+                    <time datetime="2022-01-01">{{blog.date_created |date:"M j, Y"}}</time>
                   </p>
                 </div>
               </div>
 
             </article>
           </div><!-- End post list item -->
-
+          {% endfor %}
         </div><!-- End recent posts list -->
 
       </div>
