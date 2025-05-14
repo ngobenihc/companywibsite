@@ -3,7 +3,7 @@ from django.contrib import admin
 from . import views
 from django.urls import path
 
-
+from .views import blog_details
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,5 +11,5 @@ urlpatterns = [
     path('about/',views.about,name='about-page'),
     path('test/',views.testimonials,name ='testimonials'),
     path('contact/',views.contact_form,name='contact-page'),
-    path('blog_details/<blog_id>',views.blog_details,name='blog-page'),
+    path('details/<blog_id>',blog_details,name='blog-page'),
 ]

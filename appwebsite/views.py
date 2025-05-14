@@ -93,12 +93,36 @@ def blog(request):
 
 
 
-def blog_details(request, blog_id):
+# def blog_details(request, blog_id):
+#
+#     blog_post = BlogInfo.objects.get(id=blog_id)
+#     context = {
+#         'blog_post': blog_post,
+#     }
+#
+#     return render(request, 'appwebsite/blog_details.html',context )
 
-    blog_post = BlogInfo.objects.get(id = blog_id)
+
+def blog_details(request,blog_id):
+    company = CompanyInfo.objects.first()
+    service = ServiceInfo.objects.all()
+    testimonial = TestimonialIfor.objects.all()
+    asked_questions = FrequentlyAskedQuestionsInfo.objects.all()
+    # blog_post = BlogInfo.objects.all().order_by("-date_created")[:3]
+    blog_post = BlogInfo.objects.get(id=blog_id)
     context = {
 
         'blog_post': blog_post,
     }
 
-    return render(request, 'appwebsite/blog_details.html',context )
+    return render(request, 'appwebsite/blog_details.html', context)
+
+
+
+
+
+
+
+
+
+
